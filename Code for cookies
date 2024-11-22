@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Cookie Demo</title>
+</head>
+<body>
+    <h1>Cookie Demo</h1>
+    <input type="text" id="cookieInput" placeholder="Enter a value">
+    <button onclick="setCookie()">Set Cookie</button>
+    <p id="cookieDisplay"></p>
+
+    <script>
+        function setCookie() {
+            const value = document.getElementById("cookieInput").value;
+            if (value) {
+                document.cookie = `demoCookie=${value}; path=/; max-age=3600`;
+                location.reload();
+            }
+        }
+
+        const cookie = document.cookie.split("; ").find(row => row.startsWith("demoCookie="));
+        document.getElementById("cookieDisplay").textContent = cookie 
+            ? `Cookie Value: ${cookie.split("=")[1]}` 
+            : "No cookie found.";
+    </script>
+</body>
+</html>
